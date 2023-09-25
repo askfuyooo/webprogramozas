@@ -16,11 +16,22 @@ table {
 }
 
 td {
-    border: bdarkgray 2px solid;
-    background-color: lightgray;
     transition: 0.25s;
 }
 
+#btnShuffle:hover,
 td:hover {
     background-color: darkgray;
+}
+
+#btnContainer {
+    margin-top: 1%;
+    text-align: center;
+}
+
+#btnShuffle {
+    border: 1px solid black;
+    background-color: lightgray;
+    transition: 0.25s;
+    padding: 10px;
 }
