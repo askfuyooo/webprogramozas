@@ -69,13 +69,30 @@ function lepes(doc) {
     var nures = parseInt(ures)
          
     if (nid + sorok == nures || nid - sorok == nures ||
-        nid+1==nures && nures % sorok != 0 ||
-        nid-1==nures && nid % sorok != 0) {
+        nid +1 == nures && nures % sorok != 0 ||
+        nid -1 == nures && nid % sorok != 0) {
         
         document.getElementById(ures.toString()).innerHTML = document.getElementById(doc.id).innerHTML
-        document.getElementById(ures.toString()).style.background = document.getElementById(doc.id).style.background
+        document.getElementById(ures.toString()).style.background = "lightgray"
         document.getElementById(doc.id).style.background="gray"
         document.getElementById(doc.id).innerHTML=""
         ures=doc.id;
+    }
+
+    let joErtek = 0
+    let joMax = 8
+    for (let i = 0; i < sorok * cellak; i++) {
+        let szam = document.getElementById(i).innerHTML
+        if (i == szam - 1) {
+            joErtek++
+        }
+    }
+
+    if (joErtek == joMax) {
+        document.getElementById("imgVictory").style.display = "block"
+        document.getElementById("imgNerd").style.display = "block"
+    } else {
+        document.getElementById("imgVictory").style.display = "none"
+        document.getElementById("imgNerd").style.display = "none"
     }
 }

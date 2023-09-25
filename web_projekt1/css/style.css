@@ -30,3 +30,17 @@ td {
     transition: 0.25s;
     padding: 10px;
 }
+
+#imgVictory {
+    float: left;
+    position: absolute;
+    width: 20%;
+    display: none;
+}
+
+#imgNerd {
+    right: 0px;
+    position: absolute;
+    width: 20%;
+    display: none;
+}
