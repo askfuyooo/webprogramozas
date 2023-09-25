@@ -3,4 +3,24 @@
 html {
     font-family: 'Quicksand', sans-serif;
     background-color: gray;
+    user-select: none;
+}
+
+table {
+    border: black 1px solid;
+    width: 250px;
+    height: 250px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td {
+    border: bdarkgray 2px solid;
+    background-color: lightgray;
+    transition: 0.25s;
+}
+
+td:hover {
+    background-color: darkgray;
 }
