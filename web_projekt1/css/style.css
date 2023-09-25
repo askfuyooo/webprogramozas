@@ -19,11 +19,6 @@ td {
     transition: 0.25s;
 }
 
-#btnShuffle:hover,
-td:hover {
-    background-color: darkgray;
-}
-
 #btnContainer {
     margin-top: 1%;
     text-align: center;
