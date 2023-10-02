@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+html {
+    font-family: 'Quicksand', sans-serif;
+    background-color: gray;
+    user-select: none;
+}
+
+table {
+    border: black 1px solid;
+    width: 0px;
+    height: 0px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td {
+    transition: 0.25s;
+}
+
+h3,
+h1 {
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#btnReload {
+    margin-top: 10px;
+}
+
+#imgVictory {
+    float: left;
+    position: absolute;
+    width: 20%;
+    display: none;
+}
+
+#imgNerd {
+    right: 0px;
+    position: absolute;
+    width: 20%;
+    display: none;
+}
