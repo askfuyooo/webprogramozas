@@ -36,16 +36,6 @@ function init() {
             tt[i][j].innerHTML=""
         }
     }
-
-    /*
-    for (let i=0; i<figure_cell_list.length; i++)
-    {
-        let trow=figure_cell_list[i][0];
-        let tcol=figure_cell_list[i][1];
-        let tfigure=figure_cell_list[i][2];
-        tt[trow][tcol].innerHTML=tfigure;
-    }
-    */
 }
 
 function clearBackground()
