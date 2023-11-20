@@ -3,7 +3,17 @@
     font-family: 'Quicksand', sans-serif;
     user-select: none;
     scroll-behavior: smooth;
-    background-color: gray;
+    background-color: rgb(15, 15, 15);
+    color: white;
+    overflow: hidden;
+}
+
+@keyframes pulse {
+    from {
+        box-shadow:
+            0 0 25px white,
+            0 0 50px white;
+    }
 }
 
 #container {
@@ -12,26 +22,44 @@
     margin-right: auto;
 }
 
+#container h1 {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
 #container #btnKezdes {
-    margin-top: 50px;
     width: 200px;
     height: 75px;
     font-size: larger;
-    display: inline-block;
-    text-decoration: none;
-    padding: 20px 50px;
-    border: 2px solid black;
+    border: 2px solid rgb(15, 15, 15);
     border-radius: 8px;
-}
+    position: absolute;
+    background-color: transparent;
+    color: rgb(15, 15, 15);
+    transition: 0.05s;
 
-@keyframes pulse {
-    from {
-        box-shadow:
-            0 0 25px green,
-            0 0 50px blue;
-    }
+    
+    border: 1px solid white;
+    color: white;
+    
 }
 
 #container #btnKezdes:hover {
+    background-color: rgb(17, 17, 17);
+    color: gray;
+}
+
+#container #btnKezdes:focus {
     animation: pulse 0.5s ease-in-out;
+}
+
+#timer {
+    display: none;
+}
+
+#secondPuzzleDiv {
+    opacity: 0;
+    display: none;
 }

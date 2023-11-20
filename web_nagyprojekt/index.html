@@ -5,14 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/main.js"></script>
-    <title></title>
+    <title>Szabadulószoba</title>
 </head>
-    <body>
+    <body onload="moveBtn()">
+        <h1 id="timer">14:59</h1>
+        
         <div id="container">
-            <h1>
-                A kezdéshez kattinston a gombra!
-            </h1>
-            <input id="btnKezdes" type="button" value="Kezdés">
+            <div id="firstPuzzleDiv">
+                <h1 id="firstPuzzleH1">
+                    A kezdéshez találja meg a gombot!
+                </h1>
+                <input id="btnKezdes" type="button" value="Kezdés" tabindex="-1" onclick="firstClick()">
+            </div>
+
+            <div id="secondPuzzleDiv">
+               
+            </div>
         </div>
     </body>
 </html>
