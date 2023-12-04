@@ -4,6 +4,21 @@ let maxPlaces = 1
 let timerCountDown = 15
 
 
+//Cursor
+
+let altTabbed = false
+document.addEventListener("mousemove", (e) => {
+    const cursor = document.getElementById("cursor")
+    const offsetX = e.movementX
+    const offsetY = e.movementY
+
+    const currLeft = parseInt(getComputedStyle(cursor).left)
+    const currTop = parseInt(getComputedStyle(cursor).top)
+
+    cursor.style.left = `${currLeft + offsetX}px`
+    cursor.style.top = `${currTop + offsetY}px`
+})
+
 // FUNCTIONS
 function timer() {
     let timerH1 = document.getElementById("timer")
