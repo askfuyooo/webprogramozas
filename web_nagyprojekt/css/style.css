@@ -6,7 +6,6 @@
     background-color: rgb(15, 15, 15);
     color: white;
     overflow: hidden;
-    pointer-events: none;
 }
 
 @keyframes pulse {
@@ -17,14 +16,11 @@
     }
 }
 
-#cursor {
-    width: 15px;
+canvas {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    background-color: transparent;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
 
 #container {
@@ -38,6 +34,7 @@
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
+    background-color: transparent;
 }
 
 #container #btnKezdes {
@@ -70,7 +67,25 @@
     display: none;
 }
 
-#secondPuzzleDiv {
+#secondPuzzleDiv,
+#thirdPuzzleDiv {
     opacity: 0;
     display: none;
+}
+
+#numValue::-webkit-inner-spin-button,
+#numValue::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#numValue {
+    width: 250px;
+    height: 25px;
+    font-size: large;
+    text-align: center;
+    outline: none;
+    transition: 0.5s;
+    border: 1px solid white;
+    border-radius: 10px;
 }

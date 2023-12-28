@@ -1,23 +1,13 @@
 // SETTINGS
 let placeCount = 0
 let maxPlaces = 1
+
+let randomSum = 0
+let randomNumbersCount = 3
+
 let timerCountDown = 15
+let secondGameDraw = false
 
-
-//Cursor
-
-let altTabbed = false
-document.addEventListener("mousemove", (e) => {
-    const cursor = document.getElementById("cursor")
-    const offsetX = e.movementX
-    const offsetY = e.movementY
-
-    const currLeft = parseInt(getComputedStyle(cursor).left)
-    const currTop = parseInt(getComputedStyle(cursor).top)
-
-    cursor.style.left = `${currLeft + offsetX}px`
-    cursor.style.top = `${currTop + offsetY}px`
-})
 
 // FUNCTIONS
 function timer() {
@@ -103,12 +93,61 @@ function firstClick() {
     moveBtn()
 }
 
-function startGame() {
-    fadeOutEffect("firstPuzzleDiv")
-    fadeInEffect("secondPuzzleDiv")
+//SECOND PUZZLE
+let isDrawing = false
+let startX, startY
+
+const canvas = document.createElement("canvas")
+document.body.appendChild(canvas)
+const ctx = canvas.getContext("2d")
+
+canvas.width = window.innerWidth
+canvas.height = window.innerHeight
+
+canvas.addEventListener("mousedown", (e) => {
+  isDrawing = true
+  startX = e.clientX
+  startY = e.clientY
+});
+
+canvas.addEventListener("mousemove", drawLine);
+
+window.addEventListener("mouseup", () => {
+  isDrawing = false
+});
+
+function drawLine(e) {
+  if (!isDrawing || !secondGameDraw) return
+
+  ctx.beginPath()
+  ctx.moveTo(startX, startY)
+  ctx.lineTo(e.clientX, e.clientY)
+  ctx.strokeStyle = "white"
+  ctx.lineWidth = 15
+  ctx.lineCap = "round"
+  ctx.stroke()
+
+  startX = e.clientX
+  startY = e.clientY
 }
 
+function startSecondGame() {
+    fadeOutEffect("firstPuzzleDiv")
+    fadeInEffect("secondPuzzleDiv")
+    secondGameDraw = true
+    secondGameRandomNumbers()
+}
 
+function throwSecondGame() {
+    fadeOutEffect("secondPuzzleDiv")
+    fadeInEffect("thirdPuzzleDiv")
+
+    secondGameDraw = false
+    for (let i = 0; i < numbers.length; i++) {
+        document.body.removeChild(numbers[i])
+    }
+    document.body.removeChild(canvas)
+}
 
 // PUZZLES
 function firstPuzzle() {
@@ -117,6 +156,50 @@ function firstPuzzle() {
         placeCount++
         document.body.focus()
     } else {
-        document.getElementById("btnKezdes").setAttribute("onclick", "startGame()")
+        document.getElementById("btnKezdes").setAttribute("onclick", "startSecondGame()")
+    }
+}
+
+let numbers = new Array(randomNumbersCount)
+function secondGameRandomNumbers() {
+
+    const max = 1000
+    const min = 1
+
+    for (let i = 0; i < numbers.length; i++) {
+        let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min
+        
+        let top = Math.floor(Math.random() * (71 - 10) + 10)
+        let left = Math.floor(Math.random() * (71 - 10) + 10)
+
+        let newNumber = document.createElement("h3")
+        newNumber.innerHTML = randomNumber
+        newNumber.style.position = "absolute"
+        newNumber.style.top = top + "%"
+        newNumber.style.left = left + "%"
+        newNumber.style.color = "white" //rgb(15, 15, 15) TÖRÖL
+        newNumber.style.zIndex = "-1"
+        newNumber.style.backgroundColor = "transparent"
+
+        document.body.appendChild(newNumber)
+
+        numbers[i] = newNumber
+        randomSum += randomNumber
+
+    }
+
+    console.log(randomSum) //TÖRÖL
+}
+
+function numChange() {
+    const numInput = document.getElementById("numValue")
+    let value = numInput.value
+    if (value == randomSum) {
+        numInput.style.border = "5px solid green"
+        setTimeout(function() {
+            throwSecondGame()
+        }, 500)
+    } else {
+        numInput.style.border = "5px solid red"
     }
 }

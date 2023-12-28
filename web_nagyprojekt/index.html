@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/main.js"></script>
     <title>Szabadulószoba</title>
 </head>
     <body onload="moveBtn()">
         <h1 id="timer">14:59</h1>
-        <img src="imgs/cursor.png" alt="^" draggable="false" id="cursor">
+
         <div id="container">
             <div id="firstPuzzleDiv">
                 <h1 id="firstPuzzleH1">
@@ -19,10 +18,19 @@
             </div>
 
             <div id="secondPuzzleDiv">
-               <h2>
-                2.
-               </h2>
+               <h1>
+                2. Adja meg a számok összegét!
+                <br>
+                <input type="number" name="Összeg" id="numValue" oninput="numChange()">
+               </h1>
+            </div>
+
+            <div id="thirdPuzzleDiv">
+                <h1>
+                    3.
+                </h1>
             </div>
         </div>
     </body>
+    <script src="js/main.js"></script>
 </html>
