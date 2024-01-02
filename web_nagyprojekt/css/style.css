@@ -85,7 +85,41 @@ canvas {
     font-size: large;
     text-align: center;
     outline: none;
-    transition: 0.5s;
+    transition: 0.25s;
     border: 1px solid white;
     border-radius: 10px;
+}
+
+#thirdGameDiv,
+#thirdGameDiv table {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#thirdGameDiv table {
+    margin-top: 5%;
+    width: 100%;
+}
+
+#thirdGameDiv hr {
+    width: 70%;
+}
+
+#thirdGameDiv td {
+    height: 50px;
+}
+
+#thirdGameDiv table tr,
+#thirdGameDiv table tr td {
+    width: 25%;
+}
+
+.thirdGameEmojis {
+    transition: 0.5s;
+}
+.thirdGameEmojis:hover {
+    background-color: rgb(39, 37, 37);
+    border-radius: 10px;
+    cursor: pointer;
 }

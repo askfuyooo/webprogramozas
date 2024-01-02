@@ -138,6 +138,12 @@ function startSecondGame() {
     secondGameRandomNumbers()
 }
 
+let chicken = document.createElement("span")
+let fox = document.createElement("span")
+let farmer = document.createElement("span")
+let ship
+let hr = document.createElement("hr")
+
 function throwSecondGame() {
     fadeOutEffect("secondPuzzleDiv")
     fadeInEffect("thirdPuzzleDiv")
@@ -147,6 +153,66 @@ function throwSecondGame() {
         document.body.removeChild(numbers[i])
     }
     document.body.removeChild(canvas)
+    
+    //Tábla Létrehozása
+    let thirdGameDiv = document.getElementById("thirdGameDiv")
+    let thirdGameTable = document.createElement("table")
+    thirdGameTable.style.border = "1px solid black"
+    let idNumber = 0
+    let shipCreated = false
+
+    for (let i = 0; i < 3; i++) {
+        let tr = document.createElement("tr")
+        thirdGameTable.appendChild(tr)
+        for (let j = 0; j < 2; j++) {
+            let td = document.createElement("td")
+            //td.innerHTML = idNumber //TÖRÖL
+            td.id = "thirdGameTd" + idNumber
+            idNumber++
+            tr.appendChild(td)
+            if (!shipCreated) {
+                let td = document.createElement("td")
+                td.appendChild(hr)
+                td.id = "thirdGameTdShip"
+                td.rowSpan = "3"
+                tr.appendChild(td)
+                shipCreated = true
+                ship = td
+            }
+        }
+    }
+    thirdGameDiv.appendChild(thirdGameTable)
+    
+    //Tábla feltöltése
+    //Csirke
+    chicken.className = "thirdGameEmojis"
+    chicken.id = "thirdGameChicken"
+    chicken.onclick = function() {
+        moveEmoji(this)
+    }
+    chicken.innerHTML = "🐔"
+    chicken.name = "elore"
+    document.getElementById("thirdGameTd0").appendChild(chicken)
+
+    //Róka
+    fox.className = "thirdGameEmojis"
+    fox.id = "thirdGameFox"
+    fox.onclick = function() {
+        moveEmoji(this)
+    }
+    fox.innerHTML = "🦊"
+    fox.name = "elore"
+    document.getElementById("thirdGameTd2").appendChild(fox)
+
+    //Farmer
+    farmer.className = "thirdGameEmojis"
+    farmer.id = "thirdGameFarmer"
+    farmer.onclick = function() {
+        moveEmoji(this)
+    }
+    farmer.innerHTML = "👨‍🌾"
+    farmer.name = "elore"
+    document.getElementById("thirdGameTd4").appendChild(farmer)
 }
 
 // PUZZLES
@@ -199,7 +265,64 @@ function numChange() {
         setTimeout(function() {
             throwSecondGame()
         }, 500)
-    } else {
+    } else if (value == "") {
+        numInput.style.border = "1px solid white"
+    }
+    else {
         numInput.style.border = "5px solid red"
     }
+}
+
+function moveEmoji(emoji) {
+    let parentNode = document.getElementById(emoji.parentNode.id)
+    if (parentNode.id == "thirdGameTdShip") {
+        emoji.title = ""
+        let freeCell
+        if (emoji.name == "elore") {
+            if (getSpanLength("thirdGameTd1") == 0) {
+                freeCell = document.getElementById("thirdGameTd1")
+            } else if (getSpanLength("thirdGameTd3") == 0) {
+                freeCell = document.getElementById("thirdGameTd3")
+            } else if (getSpanLength("thirdGameTd5") == 0) {
+                freeCell = document.getElementById("thirdGameTd5")
+            } else {
+                console.error("Kritikus hiba!")
+            }
+            emoji.name = "hatra"
+        } else {
+            if (getSpanLength("thirdGameTd0") == 0) {
+                freeCell = document.getElementById("thirdGameTd0")
+            } else if (getSpanLength("thirdGameTd2") == 0) {
+                freeCell = document.getElementById("thirdGameTd2")
+            } else if (getSpanLength("thirdGameTd4") == 0) {
+                freeCell = document.getElementById("thirdGameTd4")
+            } else {
+                console.error("Kritikus hiba!")
+            }
+            emoji.name = "elore"
+        }
+
+        parentNode.removeChild(emoji)
+        freeCell.appendChild(emoji)
+    } else {
+        let shipLength = getSpanLength("thirdGameTdShip")
+        if (shipLength <= 1) {
+            parentNode.removeChild(emoji)
+
+            ship.removeChild(hr)
+            ship.appendChild(emoji)
+            if (emoji.name == "elore") {
+                emoji.title = "-->"
+            } else {
+                emoji.title = "<--"
+            }
+            ship.appendChild(hr)
+        } else {
+            //PIROS BORDER
+        }
+    }
+}
+
+function getSpanLength (id) {
+    return document.getElementById(id).getElementsByTagName("span").length
 }
