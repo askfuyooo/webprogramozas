@@ -1,9 +1,9 @@
 // SETTINGS
 let placeCount = 0
-let maxPlaces = 1
+let maxPlaces = 10
 
 let randomSum = 0
-let randomNumbersCount = 1
+let randomNumbersCount = 5
 
 let secondGameDraw = false
 
