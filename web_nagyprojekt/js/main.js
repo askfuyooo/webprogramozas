@@ -293,6 +293,7 @@ function secondGameRandomNumbers() {
     secondGameAnswer.style.position = "absolute"
     secondGameAnswer.style.bottom = "0"
     secondGameAnswer.style.zIndex = "-1"
+    secondGameAnswer.style.color = "rgb(15, 15, 15)"
     secondGameAnswer.style.backgroundColor = "transparent"
 
     document.body.appendChild(secondGameAnswer)
