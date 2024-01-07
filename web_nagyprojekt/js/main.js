@@ -446,7 +446,6 @@ let btn3 = document.getElementById("fourthGameButton3")
 function fourthGameQuestions(number) {
     let question = document.getElementById("fourthGameQuestion")
 
-
     switch (number) {
         case 1: {
             question.innerHTML = "1. Melyik emoji helyes?"
