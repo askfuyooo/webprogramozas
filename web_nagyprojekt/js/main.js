@@ -1,14 +1,14 @@
 // SETTINGS
 let placeCount = 0
-let maxPlaces = 10
+let maxPlaces = 1
 
 let randomSum = 0
-let randomNumbersCount = 5
+let randomNumbersCount = 1
 
 let secondGameDraw = false
 
-let timerMinutes = 15
-let timerSeconds = 0
+let timerMinutes = 14
+let timerSeconds = 59
 let timerStopped = false
 
 
@@ -407,7 +407,10 @@ function checkThirdGame() {
     }
 
     if (getSpanLength("thirdGameTd1") == 1 && getSpanLength("thirdGameTd3") == 1 && getSpanLength("thirdGameTd5") == 1) {
-        startFourthGame()
+        thirdGameTable.style.border = "1px solid green"
+        setTimeout(function() {
+            startFourthGame()
+        }, 500)
     }
 }
 
@@ -448,30 +451,46 @@ function fourthGameQuestions(number) {
 
     switch (number) {
         case 1: {
-            question.innerHTML = "1. Melyik emoji helyes?"
-            btn1.value = "⏳"
-            btn2.value = "🔒"
-            btn3.value = "🔑"
-            setGoodButton(btn2, 1)
+            question.innerHTML = "1. Hány perces a szabadulószoba?"
+            btn1.value = "15:00"
+            btn2.value = "15:01"
+            btn3.value = "14:59"
+            setGoodButton(btn1, 1)
             break
         }
         case 2: {
-            question.innerHTML = "2. Melyik szám található meg az oldalon?"
-            btn1.value = "631"
-            btn2.value = "1337"
-            btn3.value = "733"
+            question.innerHTML = "2. Melyik gombkombinációval nyitható meg az oldal forráskódja?"
+            btn1.value = "CTRL + W"
+            btn2.value = "CTRL + R"
+            btn3.value = "CTRL + U"
             setGoodButton(btn3, 2)
             break
         }
         case 3: {
-            question.innerHTML = "3. "
-            btn1.value = "tó"
-            btn2.value = "tavak"
-            btn3.value = "nem"
-            setGoodButton(btn3, 3)
+            question.innerHTML = "3. Melyik emoji helyes?"
+            btn1.value = "⏳"
+            btn2.value = "🔒"
+            btn3.value = "🔑"
+            setGoodButton(btn2, 3)
             break
         }
         case 4: {
+            question.innerHTML = `4. 41°18'14.1"N 81°54'06.1"W`
+            btn1.value = "❤️"
+            btn2.value = "♦️"
+            btn3.value = "🔴"
+            setGoodButton(btn1, 4)
+            break
+        }
+        case 5: {
+            question.innerHTML = "5. Melyik szám található meg az oldalon?"
+            btn1.value = "911"
+            btn2.value = "733"
+            btn3.value = "1337"
+            setGoodButton(btn2, 5)
+            break
+        }
+        case 6: {
             fadeOutEffect("fourthPuzzleDiv")
             fadeInEffect("fifthPuzzleDiv")
             fifthGame()
@@ -515,8 +534,8 @@ function wrongButton(button) {
     const errorBorder = "1px solid red"
     if (button.style.border != errorBorder) {
         button.style.border = errorBorder
-        fourthGameStatus.innerHTML = "Hibás válasz! (-1 perc)"
-        timerMinutes--
+        fourthGameStatus.innerHTML = "Hibás válasz! (-3 perc)"
+        timerMinutes -= 3
         setTimeout(function() {
             fourthGameStatus.innerHTML = ""
         }, 1000)
@@ -564,6 +583,10 @@ function fifthGame() {
 function failGame() {
     timerH1.innerHTML = "Lejárt az idő!"
     timerH1.style.color = "red"
+
+    timerStopped = true
+    timerMinutes = 0
+    timerSeconds = 0
 
     if (secondGameDraw) { clearScreenSecondGame() }
 
