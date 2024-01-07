@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="imgs/lock.ico" type="image/x-icon">
     <title>Szabadulószoba</title>
 </head>
-    <body onload="startSecondGame(); throwSecondGame()"> <!--moveBtn()-->
-        <h1 id="timer">14:59</h1>
+    <body onload="startTimer(); startSecondGame(); throwSecondGame(); startFourthGame()">
+        <h1 id="timer">15:01</h1>
 
         <div id="container">
             <div id="firstPuzzleDiv">
@@ -19,7 +20,7 @@
 
             <div id="secondPuzzleDiv">
                <h1>
-                2. Adja meg a számok összegét!
+                2. Adja meg a számok összegét! (5 darab)
                 <br>
                 <input type="number" name="Összeg" id="numValue" oninput="numChange()">
                </h1>
@@ -27,9 +28,21 @@
 
             <div id="thirdPuzzleDiv">
                 <h1>
-                    3. Vigye át az öcskösöket a másik oldalra!
+                    3. Vigye át az emojikat a másik oldalra!
                     <div id="thirdGameDiv">
+                    </div>
+                </h1>
+            </div>
 
+            <div id="fourthPuzzleDiv">
+                <h1>
+                    4. Válassza ki a megfelelő választ!
+                    <p id="fourthGameQuestion">
+                    </p>
+                    <div id="fourthGameButtons">
+                        <input type="button" value="" id="fourthGameButton1" class="fourthPuzzleButton">
+                        <input type="button" value="" id="fourthGameButton2" class="fourthPuzzleButton">
+                        <input type="button" value="" id="fourthGameButton3" class="fourthPuzzleButton">
                     </div>
                 </h1>
             </div>
