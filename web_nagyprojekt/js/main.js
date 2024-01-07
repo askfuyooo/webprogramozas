@@ -492,8 +492,8 @@ function fourthGameQuestions(number) {
         }
         case 6: {
             fadeOutEffect("fourthPuzzleDiv")
-            fadeInEffect("fifthPuzzleDiv")
-            fifthGame()
+            fadeInEffect("errorPuzzleDiv")
+            questionWait()
         }
     }
 }
@@ -556,6 +556,17 @@ function resetButtons() {
     btn1.style.border = "1px solid white"
     btn2.style.border = "1px solid white"
     btn3.style.border = "1px solid white"
+}
+
+function questionWait() {
+    setTimeout(function() {
+        document.getElementById("errorPuzzleH1").innerHTML = "Feladat hiba észlelve!<br>Feladat átugrása..."
+        setTimeout(function() {
+            fadeOutEffect("errorPuzzleDiv")
+            fadeInEffect("fifthPuzzleDiv")
+            fifthGame()
+        }, 3000)
+    }, 15000)
 }
 
 function fifthGame() {
