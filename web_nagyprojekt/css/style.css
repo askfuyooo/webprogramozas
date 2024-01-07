@@ -47,11 +47,6 @@ canvas {
     background-color: transparent;
     color: rgb(15, 15, 15);
     transition: 0.05s;
-
-    
-    border: 1px solid white;
-    color: white;
-    
 }
 
 #container #btnKezdes:hover {
@@ -65,11 +60,15 @@ canvas {
 
 #timer {
     display: none;
+    transition: 0.25s;
 }
 
 #secondPuzzleDiv,
 #thirdPuzzleDiv,
-#fourthPuzzleDiv {
+#fourthPuzzleDiv,
+#fifthPuzzleDiv,
+#endGame,
+#failGame {
     opacity: 0;
     display: none;
 }

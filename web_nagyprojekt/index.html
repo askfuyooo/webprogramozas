@@ -7,9 +7,9 @@
     <link rel="shortcut icon" href="imgs/lock.ico" type="image/x-icon">
     <title>Szabadulószoba</title>
 </head>
-    <body onload="startTimer(); startSecondGame(); throwSecondGame(); startFourthGame()">
+    <body onload="moveBtn()">
         <h1 id="timer">15:01</h1>
-
+        <!-- A 4/2 válasz: 733 -->
         <div id="container">
             <div id="firstPuzzleDiv">
                 <h1 id="firstPuzzleH1">
@@ -43,7 +43,28 @@
                         <input type="button" value="" id="fourthGameButton1" class="fourthPuzzleButton">
                         <input type="button" value="" id="fourthGameButton2" class="fourthPuzzleButton">
                         <input type="button" value="" id="fourthGameButton3" class="fourthPuzzleButton">
+                        <br>
                     </div>
+                </h1>
+            </div>
+
+            <div id="fifthPuzzleDiv">
+                <h1>
+                    5. Fejezze be a játékot!
+                </h1>
+            </div>
+
+            <div id="endGame">
+                <h1>
+                    Gratulálunk! Sikeresen kiszabadult a szobából!<br>
+                    Készítette: Tóth Ádám, Horgos Hektor, Borsos Bence [12. F]
+                </h1>
+            </div>
+
+            <div id="failGame">
+                <h1>
+                    Sajnos lejárt szabadulásra szánt idő! Sok szerencsét legközelebb!<br>
+                    Készítette: Tóth Ádám, Horgos Hektor, Borsos Bence [12. F]
                 </h1>
             </div>
         </div>

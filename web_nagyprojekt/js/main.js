@@ -1,35 +1,42 @@
 // SETTINGS
 let placeCount = 0
-let maxPlaces = 1
+let maxPlaces = 10
 
 let randomSum = 0
-let randomNumbersCount = 3
+let randomNumbersCount = 5
 
 let secondGameDraw = false
 
 let timerMinutes = 15
 let timerSeconds = 0
+let timerStopped = false
 
 
 // FUNCTIONS
+let timerH1 = document.getElementById("timer")
 function timer() {
-    let timerH1 = document.getElementById("timer")
     function updateTimer() {
+       if (!timerStopped) {
         let formattedMinutes = timerMinutes < 10 ? "0" + timerMinutes : timerMinutes
         let formattedSeconds = timerSeconds < 10 ? "0" + timerSeconds : timerSeconds
         timerH1.innerHTML = formattedMinutes + ":" + formattedSeconds
 
-        if (timerMinutes === 0 && timerSeconds === 0) {
-            clearInterval(timerInterval)
-            timerH1.innerHTML = "Lejárt az idő!"
+        if (timerMinutes <= -1) {
+            failGame()
         } else {
-            if (timerSeconds === 0) {
-                timerMinutes--
-                timerSeconds = 59
+            if (timerMinutes === 0 && timerSeconds === 0) {
+                clearInterval(timerInterval)
+                failGame()
             } else {
-                timerSeconds--
+                if (timerSeconds === 0) {
+                    timerMinutes--
+                    timerSeconds = 59
+                } else {
+                    timerSeconds--
+                }
             }
         }
+       }
     }
 
     var timerInterval = setInterval(updateTimer, 1000)
@@ -147,15 +154,19 @@ function throwSecondGame() {
     fadeOutEffect("secondPuzzleDiv")
     fadeInEffect("thirdPuzzleDiv")
 
+    clearScreenSecondGame()
+
+    createThirdGameTable()
+    setupThirdGame()
+}
+
+function clearScreenSecondGame() {
     secondGameDraw = false
     for (let i = 0; i < numbers.length; i++) {
         document.body.removeChild(numbers[i])
     }
     document.body.removeChild(canvas)
     document.body.removeChild(secondGameAnswer)
-
-    createThirdGameTable()
-    setupThirdGame()
 }
 
 function createThirdGameTable() {
@@ -169,7 +180,6 @@ function createThirdGameTable() {
         thirdGameTable.appendChild(tr)
         for (let j = 0; j < 2; j++) {
             let td = document.createElement("td")
-            //td.innerHTML = idNumber //TÖRÖL
             td.id = "thirdGameTd" + idNumber
             idNumber++
             tr.appendChild(td)
@@ -268,7 +278,7 @@ function secondGameRandomNumbers() {
         newNumber.style.position = "absolute"
         newNumber.style.top = top + "%"
         newNumber.style.left = left + "%"
-        newNumber.style.color = "white" //rgb(15, 15, 15) TÖRÖL
+        newNumber.style.color = "rgb(15, 15, 15)"
         newNumber.style.zIndex = "-1"
         newNumber.style.backgroundColor = "transparent"
 
@@ -354,10 +364,10 @@ function moveEmoji(emoji) {
                     emoji.title = "<--"
                 }
                 ship.appendChild(hr)
+                checkThirdGame()
             } else {
                 thirdGameError(false)
             }
-            checkThirdGame()
         }
     } else {
         let seconds = 2
@@ -446,12 +456,25 @@ function fourthGameQuestions(number) {
             break
         }
         case 2: {
-            question.innerHTML = "2. Melyik ?"
-            btn1.value = "1"
-            btn2.value = "2"
-            btn3.value = "3"
+            question.innerHTML = "2. Melyik szám található meg az oldalon?"
+            btn1.value = "631"
+            btn2.value = "1337"
+            btn3.value = "733"
             setGoodButton(btn3, 2)
             break
+        }
+        case 3: {
+            question.innerHTML = "3. "
+            btn1.value = "tó"
+            btn2.value = "tavak"
+            btn3.value = "nem"
+            setGoodButton(btn3, 3)
+            break
+        }
+        case 4: {
+            fadeOutEffect("fourthPuzzleDiv")
+            fadeInEffect("fifthPuzzleDiv")
+            fifthGame()
         }
     }
 }
@@ -514,4 +537,46 @@ function resetButtons() {
     btn1.style.border = "1px solid white"
     btn2.style.border = "1px solid white"
     btn3.style.border = "1px solid white"
+}
+
+function fifthGame() {
+    timerH1.onclick = function() {
+        let formattedMinutes = timerMinutes < 10 ? "0" + timerMinutes : timerMinutes
+        let formattedSeconds = timerSeconds < 10 ? "0" + timerSeconds : timerSeconds
+
+        timerStopped = true
+        timerMinutes = 0
+        timerSeconds = 0
+
+        timerH1.innerHTML = formattedMinutes + ":" + formattedSeconds
+        timerH1.style.color = "red"
+        setTimeout(function() {
+            fadeOutEffect("fifthPuzzleDiv")
+            fadeInEffect("endGame")
+            setTimeout(function() {
+                fadeOutEffect("endGame")
+                fadeOutEffect("timer")
+            }, 5000)
+        }, 1000)
+    }
+}
+
+function failGame() {
+    timerH1.innerHTML = "Lejárt az idő!"
+    timerH1.style.color = "red"
+
+    if (secondGameDraw) { clearScreenSecondGame() }
+
+    fadeOutEffect("firstPuzzleDiv")
+    fadeOutEffect("secondPuzzleDiv")
+    fadeOutEffect("thirdPuzzleDiv")
+    fadeOutEffect("fourthPuzzleDiv")
+    fadeOutEffect("fifthPuzzleDiv")
+    fadeOutEffect("endGame")
+
+    fadeInEffect("failGame")
+    setTimeout(function() {
+        fadeOutEffect("failGame")
+        fadeOutEffect("timer")
+    }, 5000)
 }
