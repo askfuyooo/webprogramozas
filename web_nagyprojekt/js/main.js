@@ -217,6 +217,7 @@ function setupThirdGame() {
     }
     chicken.innerHTML = "🐔"
     chicken.name = "elore"
+    chicken.title = ""
     document.getElementById("thirdGameTd0").appendChild(chicken)
 
     //Róka
@@ -227,6 +228,7 @@ function setupThirdGame() {
     }
     fox.innerHTML = "🦊"
     fox.name = "elore"
+    fox.title = ""
     document.getElementById("thirdGameTd2").appendChild(fox)
 
     //Cabbage
@@ -237,6 +239,7 @@ function setupThirdGame() {
     }
     cabbage.innerHTML = "🥬"
     cabbage.name = "elore"
+    cabbage.title = ""
     document.getElementById("thirdGameTd4").appendChild(cabbage)
 }
 
@@ -571,6 +574,7 @@ function questionWait() {
 
 function fifthGame() {
     timerH1.onclick = function() {
+        timerH1.onclick = function() {}
         let formattedMinutes = timerMinutes < 10 ? "0" + timerMinutes : timerMinutes
         let formattedSeconds = timerSeconds < 10 ? "0" + timerSeconds : timerSeconds
 
