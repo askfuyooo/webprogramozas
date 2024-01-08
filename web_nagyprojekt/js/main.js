@@ -467,7 +467,7 @@ function fourthGameQuestions(number) {
             break
         }
         case 3: {
-            question.innerHTML = "3. Melyik emoji helyes?"
+            question.innerHTML = "3. Melyik emoji található meg az oldalon?"
             btn1.value = "⏳"
             btn2.value = "🔒"
             btn3.value = "🔑"
