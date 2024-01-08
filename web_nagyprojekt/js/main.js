@@ -574,9 +574,9 @@ function fifthGame() {
         let formattedMinutes = timerMinutes < 10 ? "0" + timerMinutes : timerMinutes
         let formattedSeconds = timerSeconds < 10 ? "0" + timerSeconds : timerSeconds
 
-        timerStopped = true
         timerMinutes = 0
         timerSeconds = 0
+        timerStopped = true
 
         timerH1.innerHTML = formattedMinutes + ":" + formattedSeconds
         timerH1.style.color = "red"
@@ -595,9 +595,9 @@ function failGame() {
     timerH1.innerHTML = "Lejárt az idő!"
     timerH1.style.color = "red"
 
-    timerStopped = true
     timerMinutes = 0
     timerSeconds = 0
+    timerStopped = true
 
     if (secondGameDraw) { clearScreenSecondGame() }
 
