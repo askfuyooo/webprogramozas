@@ -566,7 +566,7 @@ function questionWait() {
             fadeInEffect("fifthPuzzleDiv")
             fifthGame()
         }, 3000)
-    }, 15000)
+    }, 10000)
 }
 
 function fifthGame() {
